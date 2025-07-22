@@ -1,4 +1,4 @@
-🚦 **Traffic Lights Simulation — Concise Overview**
+🚦 **Traffic Lights Simulation**
 
 ---
 
