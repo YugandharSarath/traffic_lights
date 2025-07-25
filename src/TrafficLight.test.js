@@ -32,17 +32,16 @@ describe("TrafficLight Component", () => {
 
   test("Full Cycle: Red → Green → Yellow → Red", async () => {
     render(<TrafficLight />);
-    // Red → Green
     await act(async () => {
       jest.advanceTimersByTime(3000);
     });
     expect(document.querySelector(".light.green")).toHaveClass("on");
-    // Green → Yellow
+
     await act(async () => {
       jest.advanceTimersByTime(3000);
     });
     expect(document.querySelector(".light.yellow")).toHaveClass("on");
-    // Yellow → Red
+
     await act(async () => {
       jest.advanceTimersByTime(1000);
     });
@@ -51,19 +50,34 @@ describe("TrafficLight Component", () => {
 
   test("Loop Continuity: Cycles correctly for 2 full cycles", async () => {
     render(<TrafficLight />);
-    // 1st cycle: Red (3s) → Green (3s) → Yellow (1s) → Red
-    await act(async () => { jest.advanceTimersByTime(3000); });
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
     expect(document.querySelector(".light.green")).toHaveClass("on");
-    await act(async () => { jest.advanceTimersByTime(3000); });
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
     expect(document.querySelector(".light.yellow")).toHaveClass("on");
-    await act(async () => { jest.advanceTimersByTime(1000); });
+
+    await act(async () => {
+      jest.advanceTimersByTime(1000);
+    });
     expect(document.querySelector(".light.red")).toHaveClass("on");
-    // 2nd cycle: Red (3s) → Green (3s) → Yellow (1s) → Red
-    await act(async () => { jest.advanceTimersByTime(3000); });
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
     expect(document.querySelector(".light.green")).toHaveClass("on");
-    await act(async () => { jest.advanceTimersByTime(3000); });
+
+    await act(async () => {
+      jest.advanceTimersByTime(3000);
+    });
     expect(document.querySelector(".light.yellow")).toHaveClass("on");
-    await act(async () => { jest.advanceTimersByTime(1000); });
+
+    await act(async () => {
+      jest.advanceTimersByTime(1000);
+    });
     expect(document.querySelector(".light.red")).toHaveClass("on");
   });
 
@@ -76,17 +90,20 @@ describe("TrafficLight Component", () => {
     ].filter(el => el && el.classList.contains("on")).length;
 
     expect(getActiveCount()).toBe(1);
+
     await act(async () => {
-      jest.advanceTimersByTime(3000); // Green
+      jest.advanceTimersByTime(3000);
     });
     expect(getActiveCount()).toBe(1);
+
     await act(async () => {
-      jest.advanceTimersByTime(3000); // Yellow
+      jest.advanceTimersByTime(3000);
     });
     expect(getActiveCount()).toBe(1);
+
     await act(async () => {
-      jest.advanceTimersByTime(1000); // Red
+      jest.advanceTimersByTime(1000);
     });
     expect(getActiveCount()).toBe(1);
   });
-}); 
+});

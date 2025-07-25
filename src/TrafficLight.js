@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 
-type Light = "red" | "green" | "yellow";
-
-const TrafficLight: React.FC = () => {
-  const [activeLight, setActiveLight] = useState<Light>("red");
+const TrafficLight = () => {
+  const [activeLight, setActiveLight] = useState("red");
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeout;
 
     if (activeLight === "red") {
       timeout = setTimeout(() => setActiveLight("green"), 3000);
